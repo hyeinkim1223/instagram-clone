@@ -7,8 +7,8 @@ upload:
   profile-path: C:/uploads/profile
   board-path: C:/uploads/board
 mail:
-  username: tjoeun.jr5@gmail.com
-  password: chjk wemd eooc wflj
+  username : hy941223@gmail.com
+  password: ibxv rekj bpos notz
 jwt:
   config:
     secret: springboard-jwt-secret-key-2026-change-this-please!!!
