@@ -17,12 +17,12 @@ public class ViewController {
         return "index";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/user/login")
     public String loginView() {
         return "user/login";
     }
 
-    @GetMapping("/register")
+    @GetMapping("/user/register")
     public String registerView() {
         return "user/register";
     }
