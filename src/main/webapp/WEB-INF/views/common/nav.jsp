@@ -6,10 +6,21 @@
         <a href="/" class="nav-logo">Instagram</a>
 
         <div class="nav-icons">
-            <a href="/" class="nav-icon">🏠</a>
-            <a href="#" class="nav-icon">🔍</a>
-            <a href="#" class="nav-icon">➕</a>
-            <a href="#" class="nav-icon">🤍</a>
+            <button href="/" class="nav-btn">
+                <img src="/static/img/icon-home.png" alt="홈" class="nav-icon">
+            </button>
+            <button href="/" class="nav-btn">
+                <img src="/static/img/icon-search.png" alt="검색" class="nav-icon">
+            </button>
+            <button href="/" class="nav-btn">
+                <img src="/static/img/icon-newpost.png" alt="새 게시물" class="nav-icon">
+            </button>
+            <button href="/" class="nav-btn">
+                <img src="/static/img/icon-like.png" alt="좋아요" class="nav-icon">
+            </button>
+            <button href="/" class="nav-btn">
+                <img src="/static/img/icon-more.png" alt="더보기" class="nav-icon">
+            </button>
 
             <c:choose>
                 <c:when test="${not empty loginUser}">
