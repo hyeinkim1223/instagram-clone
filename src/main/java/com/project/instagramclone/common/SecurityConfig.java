@@ -19,26 +19,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  */
 
 @Configuration
-@EnableWebSecurity // 기본적으로 스프링부트에서 제공하는 환경설정 대신에 개발자가 만들어놓은 보안 환경설정 활성화!
-// 스프링부터에서 만든 보안 환경설정을 사용하겠다. 하면 @EnableWebSecurity 주석 제거한다.
+@EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    //   private final  JwtFilter 필터 적용!
-    // 기존 스프링시큐리티가 만든 암호화 방식에 몇가지만 우리회사가 만든 방식으로 보안 설정
     private final JwtFilter jwtFilter;
 
     @Bean
     public SecurityFilterChain 보안설정(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable()) // 처음 켰을 때 우리가 만들지 않은 로그인 창 안뜸
-                // JWT 방식으로 로그인관리 진행하겠다.
-                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                // 어디어디 롤에 따른 접근권한 세팅
+        http.csrf(csrf -> csrf.disable())
+                .sessionManagement(
+                        sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/static/**").permitAll()
                         .anyRequest().permitAll())
-                // .requestMatchers().permitAll()
-                // .auth.anyRequest().permitAll()
-                // .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
