@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java" isELIgnored="true" %>
 <html>
 <head>
     <title>카카오맵 마커</title>
@@ -49,8 +49,14 @@
     //=======================================================
     // placeList
     const 장소들 = document.getElementById("place-list");
+    console.log("place-list 확인 : ", 장소들);
+
     // location = loc index = idx button = btn String = str message = msg
+    // locations = 장소들이 들어있는 리스트 목록들
+    // forEach 문은 목록들을 0번째 부터 끝번째까지 순회
+
     locations.forEach((loc, idx) => {
+        console.log("현재 log : ", loc); // locations 을 순회해서 loc 안에 1번 부터 5번까지 모두다 조회가 되는지 확인
         const item = document.createElement("div");
         item.className = "place-item";
         item.id = "place-" + loc.id;
@@ -64,8 +70,10 @@
         </div>
 
         `;
+            // 나는 클릭을 만들면서 기능이름이라는 기능을만들고 이 안에 기능을 작성할거야
         item.addEventListener("click", () => 마커이동(idx));
         장소들.appendChild(item);
+        console.log("appendChild 완료 : ", item);
     });
 
     // =====================================================
@@ -102,10 +110,10 @@
 
             // 인포윈도우 내용 (말풍선 팝업)
             const 인포윈도우내용 = `
-            <div class="custom-infowindow">
-                <div class="iw-name">${loc.icon} ${loc.name}</div>
-                <div class="iw-desc">${loc.desc}</div>
-                <span class="iw-badge" style="background:${loc.color}22; color:${loc.color}">
+            <div style="    background: #1a1a1a;    border: 1px solid #333;    border-radius: 12px;    padding: 12px 14px;     font-family: 'Inter', sans-serif; min-width: 160px; box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+                <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;">${loc.icon} ${loc.name}</div>
+                <div  style="font-size: 12px; color: #888;">${loc.desc}</div>
+                <span  style="  display: inline-block; margin-top: 6px;  padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600;">
                    ${loc.lat.toFixed(4)} ${loc.lng.toFixed(4)}
                 </span>
             </div>
