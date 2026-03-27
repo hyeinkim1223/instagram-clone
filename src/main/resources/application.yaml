@@ -46,8 +46,17 @@ jwt:
 kakao:
   client-id: 2c66f9354fe037c76e39879f5e93d0b6
   redirect-uri: http://localhost:8080/api/kakao/callback
+  client-secret: QlXsQnUybXI0lC6RQrB8LzfohEbEhMTe
 
-
+logging:
+  level:
+    com.project.instagramclone: DEBUG  # 내 프로젝트
+    org.mybatis: DEBUG                 # MyBatis
+    java.sql: DEBUG                    # SQL 작성문
+    java.sql.ResultSet: DEBUG          # SQL 사용에 따른 결과
+    root: info                         # 기본은 INFO
+    com.zaxxer.hikari: DEBUG
+    org.springframework.jdbc: DEBUG    # JDBC
 
 
 

@@ -72,9 +72,8 @@
                     <span class="divider-text">또는</span>
                     <div class="divider-line"></div>
                 </div>
-
-                <a href="#" style="font-size:14px; font-weight:600; color:#385185; margin-bottom:16px;">
-                    Facebook으로 로그인
+                <a href="/api/kakao/login" class="btn btn-kakao">
+                    카카오 로그인
                 </a>
                 <a href="/user/find-email" style="font-size:12px; color:#00376b; margin-top:8px;">
                     비밀번호를 잊으셨나요?

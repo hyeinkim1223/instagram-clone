@@ -36,6 +36,9 @@ public class KakaoService {
     @Value("${kakao.redirect-uri}")
     private String redirectUri;
 
+    @Value("${kakao.client-secret}")
+    private String clientSecret;
+
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
@@ -110,6 +113,7 @@ public class KakaoService {
         파라미터.add("client_id", clientId);
         파라미터.add("redirect_uri", redirectUri);
         파라미터.add("code", 인가코드);
+        파라미터.add("client_secret", clientSecret);
 
         HttpEntity<MultiValueMap<String, String>> 요청 = new HttpEntity<>(파라미터, 헤더);
         ResponseEntity<Map> 응답 = restTemplate.postForEntity("https://kauth.kakao.com/oauth/token", 요청, Map.class);
