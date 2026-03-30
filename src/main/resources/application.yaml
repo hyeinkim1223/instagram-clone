@@ -43,22 +43,25 @@ jwt:
   access-expiry: 1800000
   refresh-expiry: 1209600000
 
+# Rest Key 만
 kakao:
-  client-id: 2c66f9354fe037c76e39879f5e93d0b6
+  client-id: a398899e140f1db35b9a81295aa68d9f
   redirect-uri: http://localhost:8080/api/kakao/callback
-  client-secret: QlXsQnUybXI0lC6RQrB8LzfohEbEhMTe
+  client-secret: Qor83iGgVArGwxXabMJnPmdYUGm1BCcU
 
 logging:
   level:
     com.project.instagramclone: DEBUG  # 내 프로젝트
     org.mybatis: DEBUG                 # MyBatis
-    java.sql: DEBUG                    # SQL 작성문
-    java.sql.ResultSet: DEBUG          # SQL 사용에 따른 결과
+#    java.sql: DEBUG                    # SQL 작성문
+#    java.sql.ResultSet: DEBUG          # SQL 사용에 따른 결과
     root: info                         # 기본은 INFO
-    com.zaxxer.hikari: DEBUG
-    org.springframework.jdbc: DEBUG    # JDBC
+#    com.zaxxer.hikari: DEBUG
+#    org.springframework.jdbc: DEBUG    # JDBC
 
-
+# mybatis -> 우리나라는 정말 많이 사용
+# 외국 jpa -> org.mybatis 가 되지 않고,
+# java.sql.ResultSet 을 사용하게 된다.
 
 
 

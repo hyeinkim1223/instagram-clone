@@ -50,13 +50,11 @@
     // placeList
     const 장소들 = document.getElementById("place-list");
     console.log("place-list 확인 : ", 장소들);
-
     // location = loc index = idx button = btn String = str message = msg
     // locations = 장소들이 들어있는 리스트 목록들
-    // forEach 문은 목록들을 0번째 부터 끝번째까지 순회
+    //  forEach 문은 목록들을 0번 째 부터 끝번째까지 순회
 
     locations.forEach((loc, idx) => {
-        console.log("현재 log : ", loc); // locations 을 순회해서 loc 안에 1번 부터 5번까지 모두다 조회가 되는지 확인
         const item = document.createElement("div");
         item.className = "place-item";
         item.id = "place-" + loc.id;
@@ -68,12 +66,9 @@
             <div class="place-name">${loc.name}</div>
             <div class="place-desc">${loc.desc}</div>
         </div>
-
         `;
-            // 나는 클릭을 만들면서 기능이름이라는 기능을만들고 이 안에 기능을 작성할거야
         item.addEventListener("click", () => 마커이동(idx));
         장소들.appendChild(item);
-        console.log("appendChild 완료 : ", item);
     });
 
     // =====================================================
@@ -161,13 +156,13 @@
 
 </script>
 <%--
-카카오에서 플렛폼 키를 가져올 때, 테스트 앱 -> 비즈 앱에 되어 있는 키를 가져온다.
-비즈 앱에 있는 키의 경우 사업자등록을 한 살마들이 정식적으로 운영하는 서비스이고,
-이 서비스를 운영하기 귀해서 개발자가 테스트하는 용도로 총 5개까지 만들어서 테스트 할 수 있도록 테스트 앱 제공
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=64691633887e9f51ec54a2bc7f50aaec&onload=지도초기화"></script>
+카카오에서 플랫폼 키를 가져올 때, 테스트 앱 -> 비즈 앱에 되어 있는 키를 가져온다.
+비즈 앱에 있는 키의 경우 사업자등록을 한 사람들이 정식적으로 운영하는 서비스이고,
+이 서비스를 운영하기 위해서 개발자가 테스트하는 용도로 총 5개까지 만들어서 테스트 할 수 있도록 테스트 앱 제공
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c44a240eea76342b264917d72eb4eea3&onload=지도초기화"></script>
 --%>
-<%-- 비즈 앱이 아닌 테스트 앱 -> 비즈 앱에 기재되어 있는 플랫폼 키에서 JavaScript 키 를 가져와 사용한다. --%>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2cc07981e6e587c8e42bed697d989475&autoload=false"></script>
+<%-- 비즈 앱 이 아닌 테스트 앱 -> 비즈 앱에 기재되어 있는 플랫폼 키에서 JavaScript 키 를 가져와 사용한다.--%>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fb918a29ba694ee0747e108f344cdea8&autoload=false"></script>
 <script>
     kakao.maps.load(function (){
         지도초기화();
