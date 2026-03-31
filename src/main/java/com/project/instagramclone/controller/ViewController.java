@@ -69,7 +69,7 @@ public class ViewController {
     }
 
     @GetMapping("/users/list")
-    public String allUsersView() {
+    public String allUserView(){
         return "user/user-list";
     }
 }
