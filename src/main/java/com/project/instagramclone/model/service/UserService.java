@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -17,13 +19,13 @@ public class UserService {
     /**
      * 특정 기능을 만든다 싶을 떄는 우선 코드내 직접적으로 작성을 하고,
      * 한번에 작성한 기능을 세부적으로 기능분리를 할 수 있는가?
-     *
+     * <p>
      * 에러 / 예외 상황이 발생하지 않아도, 개발팀 내에서 리펙토링이 필요하다 하는 파트의 기능을
      * 원활하게 수정하기 위하여 나누는 작업
-     *
-     *
+     * <p>
+     * <p>
      * 혼자서 기능 세분화 코딩 해보고싶다.
-     *
+     * <p>
      * 1. 어떤 기능을 만들고 싶은지 결과물에 작성
      * 2. 아무런 생각없이 결과물 만들기
      * 3. 결과물을 만든 다음에 기능세분화가 가능한 기능이 무엇이 있는지 찾아보기
@@ -67,7 +69,7 @@ public class UserService {
         // 백엔드로 저장이 되었는지를 가져오는 것
         // user.getEmail() = 프론트엔드에서 유저가 작성한 이메일을 자바에서 user라는 공간에서 임시보관
         //                   임시보관된 이메일을 가져와서 이메일중복체크기능() 으로 db에서 이메일이 내장되어 있는가 확인
-        if(이메일중복체크기능(user.getEmail())) return;
+        if (이메일중복체크기능(user.getEmail())) return;
         userMapper.회원가입(user);
     }
 
@@ -78,5 +80,19 @@ public class UserService {
 
     public boolean 인증번호검증(String email, String code) {
         return emailCodeService.인증번호확인(email, code);
+    }
+
+    /*
+    필요한 타입: int
+
+    제공된 타입: List <com.project.instagramclone.model.dto.User>
+
+    만약 내가 db에서 가져온 총 개수가 궁금해 -> int
+    만약 내가 db에서 가져온 총 데이터가 궁금해 -> List<User>
+
+    이정도는 팀장님이 이렇게 했으면 좋겠다~~ 가인드라인 제공
+     */
+    public List<User> 모든회원조회() {
+        return userMapper.모든회원조회();
     }
 }
