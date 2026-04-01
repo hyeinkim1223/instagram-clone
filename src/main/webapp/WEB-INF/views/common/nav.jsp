@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<%-- NAV -> common/nav.jsp 를 만든 후 코드를 옮기고 옮긴 코드를 include 이용해서 index.jsp 에 배치하기 --%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="nav">
     <div class="nav-inner">
-        <a href="/" class="nav-logo">Instagram</a>
+        <a href="/" class="nav-logo">instagram</a>
 
         <%-- 검색창 해시태그 드롭 다운
-        autocomplete="on"    검색창 클릭하면 브라우저가 이전에 입력했던 값들을 아래로 쭉 보여주기
-        autocomplete="off"   검색창 클릭하면 브라우저에서 이전에 입력했던 값들을 보여주지 않는다.
+         autocomplete="on"   검색창 클릭하면 브라우저가 이전에 입력했던 값들을 아래로 쭉 보여주기
+         autocomplete="off"  검색창 클릭하면 브라우저에서 이전에 입력했던 값들을 보여주지 않는다.
 
-        브라우저가 이전에 입력했던 값을 자동으로 추천해주는 기능 끄는 속성
-        브라우저 캐시 지우기를 하면 모두 초기화 처리된다.
-        --%>
-        <div id="검색창" class="nav-search-wrapper">
+         브라우저가 이전에 입력했던 값을 자동으로 추천해주는 기능 끄는 속성
+         브라우저 캐시 지우기를 하면 모두 초기화 처리된다.
+         --%>
+        <div id="검색창"
+             class="nav-search-wrapper">
             <div class="nav-search-box">
                 <span class="nav-search-icon">검색아이콘</span>
                 <input id="검색입력"
@@ -21,18 +21,20 @@
                        placeholder="검색어를 입력하세요."
                        autocomplete="off">
             </div>
-        </div>
-        <div class="hashtag-dropdown" id="태그드롭">
-            <p class="hashtag-dropdown-title">인기 해시태그</p>
-            <ul class="hashtag-list" id="태그목록">
-                <li class="hashtag-loading">불러오는 중 ...</li>
-            </ul>
+            <div class="hashtag-dropdown"
+                 id="태그드롭">
+                <p class="hashtag-dropdown-title">인기 해시태그</p>
+                <ul class="hashtag-list"
+                    id="태그목록">
+                    <li class="hashtag-loading">불러오는 중 ...</li>
+                </ul>
+            </div>
         </div>
 
 
         <div class="nav-icons">
-            <a class="nav-icon">홈</a>
-            <a class="nav-icon">지도</a>
+            <a class="nav-icon" href="/">홈</a>
+            <a class="nav-icon" href="/map">지도</a>
             <a class="nav-icon">글쓰기</a>
 
             <c:choose>

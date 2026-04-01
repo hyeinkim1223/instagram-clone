@@ -33,12 +33,12 @@ public class APIController {
         return locationService.장소목록가져오기();
     }
 
-    @GetMapping("/api/hashtages/popular")
+    @GetMapping("/api/hashtags/popular")
     public List<HashTag> 인기해시태그(){
         return hashTagService.인기해시태그가져오기();
     }
 
-    @GetMapping("/api/hashtages/search")
+    @GetMapping("/api/hashtags/search")
     public List<HashTag> 해시태그검색(@RequestParam String keyword){
         return hashTagService.해시태그검색(keyword);
     }
