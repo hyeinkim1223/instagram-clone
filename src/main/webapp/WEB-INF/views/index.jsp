@@ -5,15 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram</title>
+    <title>instagram</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="/static/css/instagram.css">
     <link rel="stylesheet" href="/static/css/nav.css">
 </head>
 <body>
 
-<%@include file="common/nav.jsp"%>
+<%@include file="common/nav.jsp" %>
+
 <%-- MAIN --%>
 <div class="layout">
 
@@ -34,8 +36,8 @@
                 <div class="story">
                     <div class="story-ring">
                         <c:choose>
-                            <c:when test="${not empty story.user.profile_img}">
-                                <img class="story-avatar" src="${story.user.profile_img}" alt="${story.user.name}">
+                            <c:when test="${not empty story.user.profileImg}">
+                                <img class="story-avatar" src="${story.user.profileImg}" alt="${story.user.name}">
                             </c:when>
                             <c:otherwise>
                                 <div class="story-avatar">👤</div>
@@ -49,19 +51,27 @@
             <%-- 스토리 없을 때 샘플 --%>
             <c:if test="${empty stories}">
                 <div class="story">
-                    <div class="story-ring"><div class="story-avatar">🌸</div></div>
+                    <div class="story-ring">
+                        <div class="story-avatar">🌸</div>
+                    </div>
                     <span class="story-name">spring</span>
                 </div>
                 <div class="story">
-                    <div class="story-ring"><div class="story-avatar">🚀</div></div>
+                    <div class="story-ring">
+                        <div class="story-avatar">🚀</div>
+                    </div>
                     <span class="story-name">dev</span>
                 </div>
                 <div class="story">
-                    <div class="story-ring"><div class="story-avatar">☕</div></div>
+                    <div class="story-ring">
+                        <div class="story-avatar">☕</div>
+                    </div>
                     <span class="story-name">java</span>
                 </div>
                 <div class="story">
-                    <div class="story-ring"><div class="story-avatar">🌿</div></div>
+                    <div class="story-ring">
+                        <div class="story-avatar">🌿</div>
+                    </div>
                     <span class="story-name">nature</span>
                 </div>
             </c:if>
@@ -76,8 +86,8 @@
                         <div class="post-header">
                             <div class="post-avatar-ring">
                                 <c:choose>
-                                    <c:when test="${not empty post.user.profile_img}">
-                                        <img class="post-avatar" src="${post.user.profile_img}" alt="">
+                                    <c:when test="${not empty post.user.profileImg}">
+                                        <img class="post-avatar" src="${post.user.profileImg}" alt="">
                                     </c:when>
                                     <c:otherwise>
                                         <div class="post-avatar">👤</div>
@@ -136,7 +146,8 @@
                         <div class="empty-icon">📸</div>
                         <h3>친구들의 사진과 동영상</h3>
                         <p>계정을 만들어 친구들의 사진과 동영상을 확인하세요.</p>
-                        <a href="/user/register" class="btn btn-blue" style="display:inline-block;width:auto;padding:8px 24px;">가입하기</a>
+                        <a href="/user/register" class="btn btn-blue"
+                           style="display:inline-block;width:auto;padding:8px 24px;">가입하기</a>
                     </div>
                 </c:if>
             </c:otherwise>
@@ -151,8 +162,8 @@
                 <div class="sidebar-profile">
                     <div class="sidebar-avatar-ring">
                         <c:choose>
-                            <c:when test="${not empty loginUser.profile_img}">
-                                <img class="sidebar-avatar" src="${loginUser.profile_img}" alt="프로필">
+                            <c:when test="${not empty loginUser.profileImg}">
+                                <img class="sidebar-avatar" src="${loginUser.profileImg}" alt="프로필">
                             </c:when>
                             <c:otherwise>
                                 <div class="sidebar-avatar">👤</div>
@@ -164,13 +175,14 @@
                         <div class="sidebar-email">${loginUser.email}</div>
                     </div>
                     <button class="sidebar-logout" onclick="logout()">로그아웃</button>
+                        <%-- 로그아웃 기능 완성 과제!--%>
                 </div>
             </c:when>
 
             <c:otherwise>
                 <div class="guest-box">
                     <p>로그인하고 친구들의 게시물을 확인하세요.</p>
-                    <a href="/user/login"    class="btn btn-blue"    style="margin-bottom:8px;">로그인</a>
+                    <a href="/login" class="btn btn-blue" style="margin-bottom:8px;">로그인</a>
                     <a href="/user/register" class="btn btn-outline">가입하기</a>
                 </div>
             </c:otherwise>
@@ -188,8 +200,8 @@
                     <div class="suggest">
                         <div class="suggest-avatar">
                             <c:choose>
-                                <c:when test="${not empty suggest.profile_img}">
-                                    <img src="${suggest.profile_img}" alt="${suggest.name}">
+                                <c:when test="${not empty suggest.profileImg}">
+                                    <img src="${suggest.profileImg}" alt="${suggest.name}">
                                 </c:when>
                                 <c:otherwise>👤</c:otherwise>
                             </c:choose>
@@ -230,16 +242,17 @@
             </c:otherwise>
         </c:choose>
 
-        <footer class="sidebar-footer">
-            <p>
-                <a href="#">소개</a> · <a href="#">도움말</a> · <a href="#">개인정보처리방침</a> ·
-                <a href="#">약관</a> · <a href="#">언어</a>
-            </p>
-            <p style="margin-top:8px;">© 2026 Instagram</p>
-        </footer>
+        <%@include file="common/footer.jsp" %>
     </aside>
 </div>
 
 <script src="/static/js/index.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
