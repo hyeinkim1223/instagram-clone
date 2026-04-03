@@ -19,4 +19,27 @@
         SELECT *
         FROM users;
     </select>
+    <!--
+    @맨션 검색용 쿼리
+    유저 @hong 으로 입력하면 name 에서 hong 이 포함된 유저 목록 반환
+    LIMIT 5 : 유저이름이 너무 많이 뜨면 UX(성능)이 나빠지므로 5명만 반환
+
+    name LIKE CONCAT('%', #{keyword})         : 앞에 뭐가오든 상관 없이 맨 뒤에 keyword 가 있어야 한다.
+        예 : keyword = kim
+        결과 : parkkim, hello kim ...
+    name LIKE CONCAT(#{keyword}, '%')         : 무조건 keyword 로 시작하고 뒤에 오는건 상관 없다.
+        예 : keyword = kim
+        결과 : kimchi kim123 ...
+    name LIKE CONCAT('%', #{keyword}, '%')    : 단어에 keyword 가 들어가면 된다.
+        예 : keyword = kim
+        결과 : parkkim123, kim, kimchi, parkkim ...
+
+    -->
+    <select id="유저명검색" resultType="com.project.instagramclone.model.mapper.UserMapper">
+        SELECT id, name, email, users.profile_img
+        FROM users
+        WHERE name LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY name
+        LIMIT 5
+    </select>
 </mapper>

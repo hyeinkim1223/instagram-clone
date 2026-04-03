@@ -17,15 +17,15 @@ public class UserService {
     private final EmailCodeService emailCodeService;
 
     /**
-     * 특정 기능을 만든다 싶을 떄는 우선 코드내 직접적으로 작성을 하고,
-     * 한번에 작성한 기능을 세부적으로 기능분리를 할 수 있는가?
-     * <p>
-     * 에러 / 예외 상황이 발생하지 않아도, 개발팀 내에서 리펙토링이 필요하다 하는 파트의 기능을
+     * 특정 기능을 만든다 싶을 때는 우선 코드내 직접적으로 작성을 하고,
+     * 한 번에 작성한 기능을 세부적으로 기능분리를 할 수 있는가?
+     *
+     * 에러 / 예외 상황이 발생하지 않아도, 개발팀 내에서 리팩토링이 필요하다 하는 파트의 기능을
      * 원활하게 수정하기 위하여 나누는 작업
-     * <p>
-     * <p>
+     *
+     *
      * 혼자서 기능 세분화 코딩 해보고싶다.
-     * <p>
+     *
      * 1. 어떤 기능을 만들고 싶은지 결과물에 작성
      * 2. 아무런 생각없이 결과물 만들기
      * 3. 결과물을 만든 다음에 기능세분화가 가능한 기능이 무엇이 있는지 찾아보기
@@ -35,8 +35,8 @@ public class UserService {
     public boolean 이메일중복체크기능(String email) {
         // 만약에 핫메일이거나, 아웃룩 이메일일 경우 회원가입 못하므로 중복체크 자체를 할 일이 없으므로
         // 돌려보내기
-        // 이메일 중복체크를 할 때 숫자로 시작하거나 특정 이메일로 시작하는 이메일은
-        // 우리 회사에 가입을 못하게 하였으므로 중복체크 자체가 안된다.
+        // 이메일 중복 체크를 할 때 숫자로 시작하거나 특정 이메일로 시작하는 이메일은
+        // 우리회사에 가입을 못하게 하였으므로 중복체크 자체가 안된다.
         return userMapper.이메일중복체크(email) > 0;
     }
 
@@ -44,8 +44,8 @@ public class UserService {
         /*
         지금은 코드 한줄로 이메일중복체크를 하지만,
         나중에 이메일 중복체크를 진행할 때 -> outlook hotmail 의 경우 회원가입을 못하게 하는 회사도 있고,
-        이메일 중복 체크 자체를 핸드폰 번호 인증을 했는가 먼저 본다음에 이메일 중복체크를 진행
-        if (userMapper.이메일중복체크(user.getEmail()) > 0;) return false;
+        이메일 중복 체크 자체를 핸드폰 번호 인증을 했는가 먼저 본 다음에 이메일 중복체크를 진행
+        if (userMapper.이메일중복체크(user.getEmail()) > 0) return false;
          */
         if (이메일중복체크기능(user.getEmail())) return false;
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -53,23 +53,22 @@ public class UserService {
         return true;
     }
 
-
     /**
      * 카카오 소셜 로그인 전용 회원가입
-     * - SNS 회원가입 할 때 email 은 인증번호 발송 검증 건너뛰고, SNS Social 측에서 인증 대신
+     * - SNS 회원가입 할 때 email 은 인증번호 발송 검증 건너뛰고, Social 측에서 인증 대신
      * - 인증번호 발송과 확인을 하지 않고, 대신에 jsp에서 이메일 입력창을 disabled(=비활성화) 처리
      * - 카카오 유저는 비밀번호 불필요 -> password -> null
      * - 이미 있는 이메일이면 회원가입 무시
      */
-    public void 카카오회원가입(User user) {
+    public void 카카오회원가입(User user){
         // 비밀번호가 필요 없기 때문에 비밀번호 암호화 작업 필요 없다.
         // 웹 브라우저 -> jsp -> javascript -> Controller 에서 service 로 유저가 작성한
         // 유저 정보를 User user 라는 문서에 임시 보관이 되어 있는 상태
-        // 이메일중복체크기능의 경우 유저가 프론트엔드부터 작성해놓은 유저정보에서 email 을 어떻게 가입해서
+        // 이메일중복체크기능의 경우 유저가 프론트엔부터 작성해놓은 유저정보에서 email 을 어떻게 기입해서
         // 백엔드로 저장이 되었는지를 가져오는 것
-        // user.getEmail() = 프론트엔드에서 유저가 작성한 이메일을 자바에서 user라는 공간에서 임시보관
-        //                   임시보관된 이메일을 가져와서 이메일중복체크기능() 으로 db에서 이메일이 내장되어 있는가 확인
-        if (이메일중복체크기능(user.getEmail())) return;
+        // user.getEmail() = 프론트엔드에서 유저가 작성한 이메일을 자바에서 user 라는 공간에서 임시 보관
+        //                   임시보관된 이메일을 가져와서 이메일중복체크기능() 으로 db에 이메일이 내장되어 있는가 확인
+        if(이메일중복체크기능(user.getEmail())) return;
         userMapper.회원가입(user);
     }
 
@@ -81,7 +80,6 @@ public class UserService {
     public boolean 인증번호검증(String email, String code) {
         return emailCodeService.인증번호확인(email, code);
     }
-
     /*
     필요한 타입: int
 
@@ -94,5 +92,17 @@ public class UserService {
      */
     public List<User> 모든회원조회() {
         return userMapper.모든회원조회();
+    }
+
+    public User 로그인(String email, String password) {
+        User user = userMapper.이메일로회원찾기(email);
+        if (user == null) return null;
+        if (!passwordEncoder.matches(password, user.getPassword())) return null;
+        return user;
+    }
+
+    public List<User> 유저명검색(String keyword) {
+        String at지운키워드 = keyword.replace("@","");
+        return userMapper.유저명검색(at지운키워드);
     }
 }
