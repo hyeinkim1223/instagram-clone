@@ -4,10 +4,7 @@ import com.project.instagramclone.model.dto.User;
 import com.project.instagramclone.model.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -51,5 +48,11 @@ public class UserApiController {
     public ResponseEntity<?> 모든회원조회(){
         List<User>  user = userService.모든회원조회();
         return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/api/users/search")
+    public ResponseEntity<?> 유저명검색(@RequestParam String keyword){
+        List<User> 결과 = userService.유저명검색(keyword);
+        return ResponseEntity.ok(결과);
     }
 }

@@ -61,4 +61,8 @@ public class APIController {
         return  ResponseEntity.ok(Map.of("message","로그아웃 완료"));
     }
 
+    @PostMapping("/api/board/wrire")
+    public ResponseEntity<?> 게시물등록() {
+        return ResponseEntity.ok(Map.of("message", "게시물 등록 완료!"));
+    }
 }
